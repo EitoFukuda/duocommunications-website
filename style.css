@@ -1,0 +1,27 @@
+/*
+Theme Name: Astra Child - Duo Communications
+Description: 株式会社デュオコミュニケーションズ カスタム子テーマ
+Template: astra
+Version: 1.0.0
+Author: Web Developer
+Author URI: https://duocommunications.jp
+*/
+
+/* 
+このファイルは子テーマの識別に必要です。
+実際のスタイルは assets/css/main.css に記述しています。
+*/
+
+/* 緊急時の基本スタイル（assets/css/main.css が読み込まれない場合のフォールバック） */
+:root {
+    --duo-primary-color: #000000;
+    --duo-secondary-color: #333333;
+    --duo-accent-color: #DAA520;
+    --duo-light-bg: #F8F9FA;
+    --duo-white: #FFFFFF;
+}
+
+/* 基本フォント設定 */
+body {
+    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}

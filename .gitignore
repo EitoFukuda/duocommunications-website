@@ -1,0 +1,81 @@
+# WordPress Core
+wp-config.php
+wp-config-local.php
+wp-config-production.php
+
+# Uploads and Media
+wp-content/uploads/
+wp-content/cache/
+wp-content/backup*/
+wp-content/backups/
+wp-content/updraft/
+
+# WordPress Default Themes (不要なデフォルトテーマ)
+wp-content/themes/twenty*/
+
+# Default Plugins (不要なデフォルトプラグイン)
+wp-content/plugins/akismet/
+wp-content/plugins/hello.php
+
+# Log Files
+*.log
+wp-content/debug.log
+error_log
+
+# Database Exports
+*.sql
+*.sql.gz
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary Files
+*.tmp
+*.temp
+wp-content/temp/
+
+# Local by Flywheel
+logs/
+app/sql/
+conf/
+
+# Node.js (もしNode.jsを使用する場合)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment Files
+.env
+.env.local
+.env.development
+.env.production
+
+# Backup Files
+*.bak
+*.backup
+
+# Security
+.htaccess
+wp-content/.htaccess
+
+# Plugin Specific
+wp-content/plugins/*/cache/
+wp-content/plugins/*/logs/
+
+# Cache Files
+wp-content/cache/
+wp-content/w3tc-config/
