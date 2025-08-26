@@ -41,14 +41,29 @@ function display_business_divisions_for_elementor() {
             $abbreviation = get_post_meta($post_id, '_abbreviation', true);
             $overview = get_post_meta($post_id, '_overview', true);
             $link_url = get_post_meta($post_id, '_link_url', true);
-            $hover_image = get_post_meta($post_id, '_hover_image', true);
+            // 画像はID優先でURL生成（後方互換で旧URLもフォールバック）
+            $hover_image_legacy_url = get_post_meta($post_id, '_hover_image', true);
+            $hover_image_id = absint(get_post_meta($post_id, '_hover_image_id', true));
+            $hover_image_url = '';
+            if ($hover_image_id) {
+                $hover_image_url = wp_get_attachment_image_url($hover_image_id, 'business-card');
+                if (!$hover_image_url) {
+                    $hover_image_url = wp_get_attachment_image_url($hover_image_id, 'medium');
+                }
+                if (!$hover_image_url) {
+                    $hover_image_url = wp_get_attachment_url($hover_image_id);
+                }
+            }
+            if (!$hover_image_url && !empty($hover_image_legacy_url)) {
+                $hover_image_url = $hover_image_legacy_url;
+            }
             
             // デフォルトリンク（カスタムURLが設定されていない場合）
             if (empty($link_url)) {
                 $link_url = get_permalink($post_id);
             }
             
-            $output .= '<div class="business-card" data-bg="' . esc_url($hover_image) . '" onclick="location.href=\'' . esc_url($link_url) . '\'">';
+            $output .= '<div class="business-card" data-bg="' . esc_url($hover_image_url) . '" onclick="location.href=\'' . esc_url($link_url) . '\'">';
             $output .= '<h4>' . esc_html($abbreviation) . '</h4>';
             $output .= '<p class="subtitle">' . esc_html(get_the_title()) . '</p>';
             $output .= '<p>' . esc_html($overview) . '</p>';

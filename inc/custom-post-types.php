@@ -112,7 +112,15 @@ function business_divisions_meta_box_callback($post) {
     $overview = get_post_meta($post->ID, '_overview', true);
     $display_order = get_post_meta($post->ID, '_display_order', true);
     $link_url = get_post_meta($post->ID, '_link_url', true);
-    $hover_image = get_post_meta($post->ID, '_hover_image', true);
+    // 画像はIDで保存（後方互換: 旧URL保存も参照）
+    $hover_image_id = get_post_meta($post->ID, '_hover_image_id', true);
+    $legacy_hover_image_url = get_post_meta($post->ID, '_hover_image', true);
+    if (empty($hover_image_id) && !empty($legacy_hover_image_url)) {
+        $maybe_id = attachment_url_to_postid($legacy_hover_image_url);
+        if ($maybe_id) {
+            $hover_image_id = $maybe_id;
+        }
+    }
     
     echo '<table class="form-table">';
     
@@ -128,8 +136,45 @@ function business_divisions_meta_box_callback($post) {
     echo '<tr><th><label for="link_url">リンク先URL</label></th>';
     echo '<td><input type="url" id="link_url" name="link_url" value="' . esc_attr($link_url) . '" size="50" placeholder="https://example.com" /></td></tr>';
     
-    echo '<tr><th><label for="hover_image">ホバー背景画像URL</label></th>';
-    echo '<td><input type="url" id="hover_image" name="hover_image" value="' . esc_attr($hover_image) . '" size="50" placeholder="画像のURL" /></td></tr>';
+    // 画像アップロードUI
+    $preview_src = $hover_image_id ? wp_get_attachment_image_url($hover_image_id, 'medium') : '';
+    echo '<tr><th><label for="hover_image_id">ホバー背景画像</label></th>';
+    echo '<td>';
+    echo '<div id="hover_image_preview" style="margin-bottom:10px;">';
+    if ($preview_src) {
+        echo '<img src="' . esc_url($preview_src) . '" style="max-width:300px;height:auto;display:block;" />';
+    }
+    echo '</div>';
+    echo '<input type="hidden" id="hover_image_id" name="hover_image_id" value="' . esc_attr($hover_image_id) . '" />';
+    echo '<button type="button" class="button" id="hover_image_select">画像を選択</button> ';
+    echo '<button type="button" class="button" id="hover_image_remove">画像を削除</button>';
+    echo '</td></tr>';
+    // メディアアップローダ
+    wp_enqueue_media();
+    $script = <<<EOT
+<script>
+jQuery(function($){
+    var frame;
+    $("#hover_image_select").on("click", function(e){
+        e.preventDefault();
+        if (frame) { frame.open(); return; }
+        frame = wp.media({ title: "画像を選択", button: { text: "この画像を使う" }, multiple: false });
+        frame.on("select", function(){
+            var attachment = frame.state().get("selection").first().toJSON();
+            $("#hover_image_id").val(attachment.id);
+            var src = (attachment.sizes && attachment.sizes.medium) ? attachment.sizes.medium.url : attachment.url;
+            $("#hover_image_preview").html('<img src="' + src + '" style="max-width:300px;height:auto;display:block;" />');
+        });
+        frame.open();
+    });
+    $("#hover_image_remove").on("click", function(){
+        $("#hover_image_id").val("");
+        $("#hover_image_preview").empty();
+    });
+});
+</script>
+EOT;
+    echo $script;
     
     echo '</table>';
 }
@@ -160,10 +205,25 @@ function save_business_divisions_meta_box($post_id) {
         }
     }
 
-    $fields = array('abbreviation', 'overview', 'display_order', 'link_url', 'hover_image');
+    $fields = array('abbreviation', 'overview', 'display_order', 'link_url');
     foreach ($fields as $field) {
         if (isset($_POST[$field])) {
             update_post_meta($post_id, '_' . $field, sanitize_text_field($_POST[$field]));
+        }
+    }
+
+    // 画像IDの保存（空なら削除）
+    if (isset($_POST['hover_image_id'])) {
+        $image_id = absint($_POST['hover_image_id']);
+        if ($image_id) {
+            update_post_meta($post_id, '_hover_image_id', $image_id);
+            // 後方互換のためURLも保持
+            $image_url = wp_get_attachment_url($image_id);
+            if ($image_url) {
+                update_post_meta($post_id, '_hover_image', esc_url_raw($image_url));
+            }
+        } else {
+            delete_post_meta($post_id, '_hover_image_id');
         }
     }
 }
