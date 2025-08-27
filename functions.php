@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 }
 
 // 子テーマのバージョン
-define('DUO_THEME_VERSION', '1.0.0');
+define('DUO_THEME_VERSION', '1.0.1');
 
 // デバッグモードの設定（開発時のみ）
 define('DUO_DEBUG_MODE', defined('WP_DEBUG') && WP_DEBUG);
@@ -40,10 +40,26 @@ add_action('wp_enqueue_scripts', 'astra_child_enqueue_styles', 15);
  * 追加CSSファイルの読み込み
  */
 function duo_communications_additional_styles() {
+    // デバッグモードでCSSファイルの存在確認
+    if (DUO_DEBUG_MODE && current_user_can('administrator')) {
+        $css_files = array(
+            'main.css',
+            'animations.css', 
+            'responsive.css',
+            'admin.css'
+        );
+        
+        foreach ($css_files as $file) {
+            $file_path = get_stylesheet_directory() . '/assets/css/minified/' . $file;
+            if (!file_exists($file_path)) {
+                error_log('DUO_THEME: CSS file not found - ' . $file_path);
+            }
+        }
+    }
     // メインCSS - 優先度を上げる
     wp_enqueue_style(
         'duo-main-css',
-        get_stylesheet_directory_uri() . '/inc/assets/css/main.css',
+        get_stylesheet_directory_uri() . '/assets/css/minified/main.css',
         array('astra-child-theme-css'),
         DUO_THEME_VERSION
     );
@@ -51,7 +67,7 @@ function duo_communications_additional_styles() {
     // アニメーションCSS
     wp_enqueue_style(
         'duo-animations-css',
-        get_stylesheet_directory_uri() . '/inc/assets/css/animations.css',
+        get_stylesheet_directory_uri() . '/assets/css/minified/animations.css',
         array('duo-main-css'),
         DUO_THEME_VERSION
     );
@@ -59,7 +75,7 @@ function duo_communications_additional_styles() {
     // レスポンシブCSS
     wp_enqueue_style(
         'duo-responsive-css',
-        get_stylesheet_directory_uri() . '/inc/assets/css/responsive.css',
+        get_stylesheet_directory_uri() . '/assets/css/minified/responsive.css',
         array('duo-main-css'),
         DUO_THEME_VERSION
     );
@@ -68,7 +84,7 @@ function duo_communications_additional_styles() {
     if (is_admin()) {
         wp_enqueue_style(
             'duo-admin-css',
-            get_stylesheet_directory_uri() . '/inc/assets/css/admin.css',
+            get_stylesheet_directory_uri() . '/assets/css/minified/admin.css',
             array(),
             DUO_THEME_VERSION
         );
