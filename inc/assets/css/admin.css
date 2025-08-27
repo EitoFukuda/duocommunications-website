@@ -1,0 +1,413 @@
+/**
+ * Duo Communications 管理画面用CSS
+ * 株式会社デュオコミュニケーションズ
+ * Author: Web Developer
+ * Version: 1.0.0
+ */
+
+/* ========================================
+   管理画面カスタム変数
+======================================== */
+:root {
+    --duo-admin-primary: #000000;
+    --duo-admin-accent: #DAA520;
+    --duo-admin-bg: #F8F9FA;
+    --duo-admin-white: #FFFFFF;
+    --duo-admin-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   管理画面ヘッダーのカスタマイズ
+======================================== */
+#wpadminbar {
+    background: var(--duo-admin-primary) !important;
+}
+
+#wpadminbar .ab-top-menu > li > .ab-item {
+    color: white !important;
+}
+
+#wpadminbar .ab-top-menu > li:hover > .ab-item {
+    background: var(--duo-admin-accent) !important;
+    color: white !important;
+}
+
+/* ========================================
+   ダッシュボードウィジェットのスタイル
+======================================== */
+.duo-dashboard-widget {
+    background: var(--duo-admin-white);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: var(--duo-admin-shadow);
+    margin-bottom: 20px;
+}
+
+.duo-dashboard-widget h3 {
+    color: var(--duo-admin-primary);
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--duo-admin-accent);
+}
+
+.duo-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.duo-stat-item {
+    background: var(--duo-admin-bg);
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    border-left: 4px solid var(--duo-admin-accent);
+}
+
+.duo-stat-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--duo-admin-primary);
+    display: block;
+}
+
+.duo-stat-label {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* ========================================
+   カスタム投稿タイプのスタイル
+======================================== */
+.business-division-meta-box {
+    background: var(--duo-admin-white);
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.business-division-meta-box .form-table th {
+    color: var(--duo-admin-primary);
+    font-weight: 600;
+}
+
+.business-division-meta-box input[type="text"],
+.business-division-meta-box input[type="number"],
+.business-division-meta-box textarea {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.business-division-meta-box input[type="text"]:focus,
+.business-division-meta-box input[type="number"]:focus,
+.business-division-meta-box textarea:focus {
+    border-color: var(--duo-admin-accent);
+    box-shadow: 0 0 5px rgba(218, 165, 32, 0.3);
+    outline: none;
+}
+
+/* ========================================
+   メディアライブラリのカスタマイズ
+======================================== */
+.attachments-browser .media-toolbar {
+    background: var(--duo-admin-bg);
+    border-bottom: 2px solid var(--duo-admin-accent);
+}
+
+.media-modal .media-frame-title h1 {
+    color: var(--duo-admin-primary);
+}
+
+.media-modal .button-primary {
+    background: var(--duo-admin-accent) !important;
+    border-color: var(--duo-admin-accent) !important;
+}
+
+.media-modal .button-primary:hover {
+    background: var(--duo-admin-primary) !important;
+    border-color: var(--duo-admin-primary) !important;
+}
+
+/* ========================================
+   Elementorエディターのカスタマイズ
+======================================== */
+.elementor-editor-active .duo-business-card-widget {
+    border: 2px dashed var(--duo-admin-accent);
+    padding: 20px;
+    text-align: center;
+    background: rgba(218, 165, 32, 0.1);
+}
+
+.elementor-editor-active .duo-business-card-widget::before {
+    content: "事業部カード";
+    display: block;
+    color: var(--duo-admin-accent);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* ========================================
+   フォーム要素のカスタマイズ
+======================================== */
+.duo-admin-form {
+    background: var(--duo-admin-white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--duo-admin-shadow);
+    margin: 20px 0;
+}
+
+.duo-admin-form h2 {
+    color: var(--duo-admin-primary);
+    border-bottom: 2px solid var(--duo-admin-accent);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.duo-form-group {
+    margin-bottom: 20px;
+}
+
+.duo-form-label {
+    display: block;
+    color: var(--duo-admin-primary);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.duo-form-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.duo-form-input:focus {
+    border-color: var(--duo-admin-accent);
+    box-shadow: 0 0 5px rgba(218, 165, 32, 0.3);
+    outline: none;
+}
+
+.duo-form-help {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* ========================================
+   ボタンのカスタマイズ
+======================================== */
+.duo-button-primary {
+    background: var(--duo-admin-accent);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.duo-button-primary:hover {
+    background: var(--duo-admin-primary);
+    transform: translateY(-1px);
+}
+
+.duo-button-secondary {
+    background: transparent;
+    color: var(--duo-admin-accent);
+    border: 2px solid var(--duo-admin-accent);
+    padding: 8px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.duo-button-secondary:hover {
+    background: var(--duo-admin-accent);
+    color: white;
+}
+
+/* ========================================
+   テーブルのカスタマイズ
+======================================== */
+.duo-admin-table {
+    width: 100%;
+    background: var(--duo-admin-white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--duo-admin-shadow);
+}
+
+.duo-admin-table thead {
+    background: var(--duo-admin-primary);
+    color: white;
+}
+
+.duo-admin-table th,
+.duo-admin-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.duo-admin-table tbody tr:hover {
+    background: var(--duo-admin-bg);
+}
+
+.duo-admin-table .status-active {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.duo-admin-table .status-inactive {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* ========================================
+   通知・アラートのスタイル
+======================================== */
+.duo-notice {
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin: 15px 0;
+    border-left: 4px solid;
+    position: relative;
+}
+
+.duo-notice-success {
+    background: #d4edda;
+    color: #155724;
+    border-left-color: #28a745;
+}
+
+.duo-notice-warning {
+    background: #fff3cd;
+    color: #856404;
+    border-left-color: #ffc107;
+}
+
+.duo-notice-error {
+    background: #f8d7da;
+    color: #721c24;
+    border-left-color: #dc3545;
+}
+
+.duo-notice-info {
+    background: #cce7ff;
+    color: #004085;
+    border-left-color: var(--duo-admin-accent);
+}
+
+/* ========================================
+   プログレスバー・ローダー
+======================================== */
+.duo-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: #eee;
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.duo-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--duo-admin-accent), var(--duo-admin-primary));
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.duo-loader {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--duo-admin-accent);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ========================================
+   タブ・アコーディオンのスタイル
+======================================== */
+.duo-tabs {
+    background: var(--duo-admin-white);
+    border-radius: 8px;
+    box-shadow: var(--duo-admin-shadow);
+    overflow: hidden;
+}
+
+.duo-tab-nav {
+    display: flex;
+    background: var(--duo-admin-bg);
+    border-bottom: 1px solid #ddd;
+}
+
+.duo-tab-btn {
+    flex: 1;
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--duo-admin-primary);
+    transition: all 0.3s ease;
+}
+
+.duo-tab-btn:hover,
+.duo-tab-btn.active {
+    background: var(--duo-admin-accent);
+    color: white;
+}
+
+.duo-tab-content {
+    padding: 30px;
+    display: none;
+}
+
+.duo-tab-content.active {
+    display: block;
+}
+
+/* ========================================
+   レスポンシブ対応
+======================================== */
+@media (max-width: 768px) {
+    .duo-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .duo-admin-form {
+        padding: 20px;
+        margin: 10px 0;
+    }
+    
+    .duo-tab-nav {
+        flex-direction: column;
+    }
+    
+    .duo-admin-table {
+        font-size: 14px;
+    }
+    
+    .duo-admin-table th,
+    .duo-admin-table td {
+        padding: 10px;
+    }
+}

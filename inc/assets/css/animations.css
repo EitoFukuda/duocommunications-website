@@ -1,0 +1,499 @@
+/**
+ * Duo Communications アニメーションCSS
+ * 株式会社デュオコミュニケーションズ
+ * Author: Web Developer
+ * Version: 1.0.0
+ */
+
+/* ========================================
+   キーフレームアニメーション定義
+======================================== */
+
+/* フェードイン・アップアニメーション */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* フェードインアニメーション */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* スライドイン・右から */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* スライドイン・左から */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* スケールインアニメーション */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 回転アニメーション */
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate(-180deg) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+/* バウンスアニメーション */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* パルスアニメーション */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* シェイクアニメーション */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+/* フロートアニメーション */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* グロウアニメーション */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(218, 165, 32, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(218, 165, 32, 0.8), 0 0 30px rgba(218, 165, 32, 0.6);
+    }
+}
+
+/* タイピングアニメーション */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* ブリンクアニメーション */
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   アニメーションクラス
+======================================== */
+
+/* 基本アニメーションクラス */
+.animate-fade-in {
+    animation: fadeIn 1s ease forwards;
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 1s ease forwards;
+}
+
+.animate-slide-in-right {
+    animation: slideInRight 1s ease forwards;
+}
+
+.animate-slide-in-left {
+    animation: slideInLeft 1s ease forwards;
+}
+
+.animate-scale-in {
+    animation: scaleIn 0.8s ease forwards;
+}
+
+.animate-rotate-in {
+    animation: rotateIn 1.2s ease forwards;
+}
+
+.animate-bounce-in {
+    animation: bounceIn 1s ease forwards;
+}
+
+/* 継続アニメーションクラス */
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+.animate-shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* 遅延アニメーション */
+.animate-delay-1 {
+    animation-delay: 0.1s;
+}
+
+.animate-delay-2 {
+    animation-delay: 0.2s;
+}
+
+.animate-delay-3 {
+    animation-delay: 0.3s;
+}
+
+.animate-delay-4 {
+    animation-delay: 0.4s;
+}
+
+.animate-delay-5 {
+    animation-delay: 0.5s;
+}
+
+.animate-delay-6 {
+    animation-delay: 0.6s;
+}
+
+.animate-delay-7 {
+    animation-delay: 0.7s;
+}
+
+.animate-delay-8 {
+    animation-delay: 0.8s;
+}
+
+.animate-delay-9 {
+    animation-delay: 0.9s;
+}
+
+.animate-delay-10 {
+    animation-delay: 1s;
+}
+
+/* ========================================
+   スクロールアニメーション用クラス
+======================================== */
+
+/* 初期状態（非表示） */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+/* アニメーション実行時 */
+.scroll-animate.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 左からスライドイン */
+.scroll-slide-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease;
+}
+
+.scroll-slide-left.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 右からスライドイン */
+.scroll-slide-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s ease;
+}
+
+.scroll-slide-right.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* スケールイン */
+.scroll-scale {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.8s ease;
+}
+
+.scroll-scale.animate-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* 回転イン */
+.scroll-rotate {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.8);
+    transition: all 1s ease;
+}
+
+.scroll-rotate.animate-in {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+/* ========================================
+   ホバーアニメーション
+======================================== */
+
+/* ホバー時のスケールアップ */
+.hover-scale:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* ホバー時のスケールダウン */
+.hover-scale-down:hover {
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+/* ホバー時の回転 */
+.hover-rotate:hover {
+    transform: rotate(5deg);
+    transition: transform 0.3s ease;
+}
+
+/* ホバー時の浮上 */
+.hover-float:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+/* ホバー時のグロウ */
+.hover-glow:hover {
+    box-shadow: 0 0 20px rgba(218, 165, 32, 0.6);
+    transition: box-shadow 0.3s ease;
+}
+
+/* ========================================
+   ローディングアニメーション
+======================================== */
+
+/* スピナー */
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--duo-accent-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ドットローダー */
+.dot-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.dot-loader .dot {
+    width: 10px;
+    height: 10px;
+    background: var(--duo-accent-color);
+    border-radius: 50%;
+    animation: dotPulse 1.4s infinite ease-in-out both;
+}
+
+.dot-loader .dot:nth-child(1) { animation-delay: -0.32s; }
+.dot-loader .dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes dotPulse {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+/* バーローダー */
+.bar-loader {
+    width: 100%;
+    height: 4px;
+    background: #f0f0f0;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.bar-loader .bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--duo-accent-color), var(--duo-primary-color));
+    border-radius: 2px;
+    animation: barProgress 2s ease-in-out infinite;
+}
+
+@keyframes barProgress {
+    0% {
+        width: 0%;
+        margin-left: 0%;
+    }
+    50% {
+        width: 75%;
+        margin-left: 0%;
+    }
+    100% {
+        width: 0%;
+        margin-left: 100%;
+    }
+}
+
+/* ========================================
+   アクセシビリティ対応
+======================================== */
+
+/* 動きを減らす設定が有効な場合 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .animate-pulse,
+    .animate-float,
+    .animate-glow {
+        animation: none;
+    }
+    
+    .scroll-animate,
+    .scroll-slide-left,
+    .scroll-slide-right,
+    .scroll-scale,
+    .scroll-rotate {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ========================================
+   パフォーマンス最適化
+======================================== */
+
+/* GPU加速を有効にする */
+.animate-fade-in,
+.animate-fade-in-up,
+.animate-slide-in-right,
+.animate-slide-in-left,
+.animate-scale-in,
+.animate-rotate-in,
+.animate-bounce-in,
+.scroll-animate,
+.scroll-slide-left,
+.scroll-slide-right,
+.scroll-scale,
+.scroll-rotate,
+.hover-scale,
+.hover-scale-down,
+.hover-rotate,
+.hover-float {
+    will-change: transform, opacity;
+}
+
+/* アニメーション完了後にwill-changeを削除 */
+.animate-fade-in.animation-complete,
+.animate-fade-in-up.animation-complete,
+.animate-slide-in-right.animation-complete,
+.animate-slide-in-left.animation-complete,
+.animate-scale-in.animation-complete,
+.animate-rotate-in.animation-complete,
+.animate-bounce-in.animation-complete {
+    will-change: auto;
+}
